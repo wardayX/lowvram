@@ -14,7 +14,6 @@ The example workflow has three stages:
 2. Animate the image with MiniMax H3.
 3. Optionally apply RIFE frame interpolation to the generated video.
 
-Place the actual reviewed artifacts in `examples/` using these names, or update the paths below to match your repository.
 
 | Stage | Artifact | Purpose |
 |---|---|---|
@@ -22,7 +21,6 @@ Place the actual reviewed artifacts in `examples/` using these names, or update 
 | Image-to-video | [`minimax_h3_preview.mp4`](examples/minimax_h3_preview.mp4) | MiniMax H3 animation before RIFE |
 | Frame interpolation | [`rife_final_output.mp4`](examples/rife_final_output.mp4) | Final RIFE-processed video |
 
-If the image file exists, GitHub can display it inline:
 
 ![Qwen-Image 2.1 source image](examples/qwen_source_image.png)
 
@@ -32,7 +30,9 @@ The videos are linked rather than embedded because inline video playback is not 
 
 ### 1. Qwen-Image 2.1 — text-to-image and image editing
 
-Notebook: [`Qwen_Image_2_1_Q8_0_Colab_T4.ipynb`](notebooks/Qwen_Image_2_1_Q8_0_Colab_T4.ipynb)
+
+**Notebook:** [View on GitHub](notebooks/Qwen_Image_2_1_Q8_0_Colab_T4.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wardayX/lowvram/blob/main/notebooks/Qwen_Image_2_1_Q8_0_Colab_T4.ipynb)
+
 
 The notebook provides two modes:
 
@@ -59,11 +59,12 @@ The recorded configuration uses a Q8_0 GGUF diffusion model, a Qwen3-VL INT8 tex
 
 The sampling duration is estimated from the progress-bar rate of approximately 25.61 seconds per step. It is **not** a measured end-to-end runtime. Model-file sizes do not equal runtime VRAM use. The classifier score is a result from one moderation model, not a guarantee that an image is safe.
 
-The actual PNG dimensions and file size should be added after reading them from the file itself; they are not available in the supplied generation log.
 
 ### 2. MiniMax H3 — image-to-video
 
-Notebook: [`MiniMax_H3_I2VA_Colab_T4_Public.ipynb`](notebooks/MiniMax_H3_I2VA_Colab_T4_Public.ipynb)
+
+**Notebook:** [View on GitHub](notebooks/MiniMax_H3_I2VA_Colab_T4_Public.ipynb) · [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wardayX/lowvram/blob/main/notebooks/MiniMax_H3_I2VA_Colab_T4_Public.ipynb)
+
 
 The notebook uses a source image as the opening frame and a motion prompt to generate a video. The recorded configuration used a Q4_0 GGUF model, remote Qwen3-VL conditioning, and an H3 Turbo adapter at seven sampling steps. The optional behavior/anatomy LoRA catalogue was disabled in the public configuration.
 

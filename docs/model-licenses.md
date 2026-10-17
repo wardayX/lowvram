@@ -1,17 +1,23 @@
-# Model and dependency licenses
+# Model Licenses and Attribution
 
-Complete this file before publication. Verify the exact license and usage terms for every model and custom node actually used.
+LowVRAM Lab integrates third-party models, quantized model files, adapters, custom nodes, and software. These components may be governed by different licenses and usage terms.
 
-| Component | Exact repository / revision | License | Redistribution permitted? | Notes |
-|---|---|---|---|---|
-| Qwen-Image 2.1 diffusion weights | TODO | TODO | TODO | Include quantized variant source |
-| Qwen3-VL text encoder | TODO | TODO | TODO | Record model revision |
-| Qwen VAE | TODO | TODO | TODO | Record model revision |
-| MiniMax H3 | TODO | TODO | TODO | Record exact model file/revision |
-| H3 Turbo adapter | TODO | TODO | TODO | Confirm adapter license |
-| ComfyUI | TODO | TODO | TODO | Record commit/version |
-| Qwen conditioning node | TODO | TODO | TODO | Record repository and commit |
-| RIFE implementation | TODO | TODO | TODO | Record repository and commit |
-| NSFW image classifier | TODO | TODO | TODO | Record model revision and license |
+## Important
 
-Do not assume that the code license automatically applies to model weights, adapters, or generated assets.
+- This repository does not grant permission to redistribute third-party model weights or adapters.
+- Model weights, quantized variants, and adapters may have terms that differ from the license of their original code repository.
+- Before redistributing a model or using it commercially, check the license and usage restrictions published by the original provider for the exact version used.
+- The notebooks are provided as workflows. Users are responsible for obtaining model files and dependencies from their respective sources and complying with the applicable terms.
+
+## Third-Party Components
+
+- **Qwen-Image 2.1:** [Qwen model collection](https://huggingface.co/Qwen)
+- **Qwen3-VL:** [Qwen model collection](https://huggingface.co/Qwen)
+- **ComfyUI:** [Official repository](https://github.com/comfyanonymous/ComfyUI)
+- **MiniMax H3, its Turbo adapter, and the RIFE implementation:** Consult the exact upstream repositories and model versions referenced in the notebooks.
+
+The links above are starting points, not confirmation that every specific model file or adapter is licensed for redistribution.
+
+## License of This Repository
+
+The license governing this repository's own code and documentation does not automatically apply to third-party model weights, adapters, dependencies, or generated outputs. See the root `LICENSE` file for the scope of the repository's own license.
