@@ -1,0 +1,31 @@
+# Runtime outputs and downloaded weights
+models/
+checkpoints/
+loras/
+vae/
+ComfyUI/models/
+ComfyUI/output/
+ComfyUI/temp/
+ComfyUI/input/
+*.safetensors
+*.gguf
+*.ckpt
+*.pth
+*.pt
+*.bin
+
+# Secrets and local configuration
+.env
+.env.*
+*.token
+secrets.json
+
+# Python/runtime clutter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
+
+# Temporary outputs
+*.tmp
+*.log
