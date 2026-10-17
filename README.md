@@ -89,19 +89,35 @@ The notebooks use quantized weights and staged model loading to make constrained
 
 Peak VRAM should be measured during a fresh run with a sampling monitor such as `nvidia-smi`. Do not estimate peak VRAM by adding model-file sizes: files can be loaded at different stages, and runtime allocations include additional buffers and workspaces.
 
-## Safety and limitations
+## Safety and NSFW Filtering
 
-The notebooks implement **best-effort moderation**, not guaranteed safe generation.
+LowVRAM Lab implements a best-effort content moderation pipeline for generated images and videos. The checks are designed to reduce the risk of disallowed content appearing in published outputs; they do not guarantee that every unsafe result will be detected.
 
-- **Prompt screening:** keyword-based checks block some prompts but can miss paraphrases and may reject benign content.
-- **Input image moderation:** an image classifier checks the uploaded reference or opening image.
-- **Generated image moderation:** the Qwen workflow checks the generated image against a configured classifier threshold.
-- **Generated video moderation:** the MiniMax workflow is designed to apply an image classifier to decoded video frames. If only sampled frames are checked, content between samples may be missed.
-- **Output handling:** do not claim that flagged files are always removed until all ComfyUI save locations, temporary files, and downloaded copies have been tested.
+### Moderation pipeline
 
-The Qwen output recorded a classifier score of `0.000` against a threshold of `0.85`. This describes that one scan only. Classifiers can produce false positives (for example, benign swimwear or beach scenes) and false negatives. The supplied run log does not establish that the final RIFE video passed a complete frame-by-frame moderation scan.
+| Stage | Check | Purpose |
+|---|---|---|
+| 1. Prompt screening | Keyword-based policy check | Blocks prompts containing configured prohibited terms before generation |
+| 2. Input moderation | Image classifier | Screens the uploaded reference image or video opening frame |
+| 3. Generated-image moderation | NSFW image classifier | Scores the generated Qwen-Image output against a configured threshold |
+| 4. Generated-video moderation | Frame-based image classification | Applies image moderation to decoded video frames, subject to the notebook's sampling strategy |
+| 5. Output handling | Save, reject, or cleanup logic | Determines whether a flagged or unscannable result is retained or removed |
 
-Before describing video moderation as fail-closed, test benign media, policy-compliant disallowed test cases, unreadable video, classifier errors, and failed scans. Confirm that unapproved media is not placed in the approved output directory.
+### Recorded image-moderation result
+
+In the recorded Qwen-Image 2.1 run, the output classifier returned an NSFW score of `0.000` against a configured threshold of `0.85`. The notebook reported that the image passed its configured check.
+
+This is one observed classifier result, not evidence that the classifier detects every unsafe image.
+
+### Limitations
+
+- Keyword-based screening can miss paraphrases and may reject benign prompts.
+- Image classifiers can produce false positives and false negatives.
+- Frame-sampled video moderation can miss content between inspected frames.
+- A classifier score below the configured threshold does not establish that an output is universally safe.
+- Video moderation and cleanup behavior must be tested before the workflow can be described as fail-closed.
+
+The final MiniMax H3/RIFE video should not be described as having passed moderation until its actual final-video scan result has been verified. See [Safety and Limitations](docs/safety-and-limitations.md) for additional details.
 
 ## Reproduce the workflows
 
