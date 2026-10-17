@@ -89,7 +89,7 @@ The notebooks use quantized weights and staged model loading to make constrained
 
 Peak VRAM should be measured during a fresh run with a sampling monitor such as `nvidia-smi`. Do not estimate peak VRAM by adding model-file sizes: files can be loaded at different stages, and runtime allocations include additional buffers and workspaces.
 
-## Safety and NSFW Filtering
+## Safety and Filtering
 
 LowVRAM Lab implements a best-effort content moderation pipeline for generated images and videos. The checks are designed to reduce the risk of disallowed content appearing in published outputs; they do not guarantee that every unsafe result will be detected.
 
